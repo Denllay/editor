@@ -1,16 +1,20 @@
 'use client';
 import { useUnit } from 'effector-react';
 import React, { forwardRef } from 'react';
-import Moveable from 'react-moveable';
+import Moveable, { BoundType } from 'react-moveable';
 import { flushSync } from 'react-dom';
 import { moveableElementsModel } from '..';
 
-export const MoveableElements = forwardRef<Moveable>((_, ref) => {
+interface Props {
+  bounds: BoundType;
+}
+
+export const MoveableElements = forwardRef<Moveable, Props>(({ bounds }, ref) => {
   const [moveableElements, updateElements] = useUnit([
     moveableElementsModel.moveableElements,
     moveableElementsModel.updateElementsUpdated,
   ]);
-
+  console.log(bounds);
   return (
     <Moveable
       ref={ref}
@@ -30,7 +34,9 @@ export const MoveableElements = forwardRef<Moveable>((_, ref) => {
       renderDirections={['nw', 'n', 'ne', 'w', 'e', 'sw', 's', 'se']}
       rotatable={true}
       throttleRotate={0}
+      snappable={true}
       svgOrigin="50% 50%"
+      bounds={bounds}
       rotationPosition={'top'}
       onDrag={(e) => {
         e.target.style.transform = e.transform;
