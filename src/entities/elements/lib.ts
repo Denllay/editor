@@ -1,4 +1,4 @@
-import { CSSProperties, DetailedHTMLFactory, StyleHTMLAttributes } from 'react';
+import { CSSProperties } from 'react';
 import { Element } from './model';
 
 const parseStyleElement = (style: CSSStyleDeclaration): CSSProperties => ({

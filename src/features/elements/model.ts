@@ -1,6 +1,5 @@
 import { elementsModel, parsePropsElement } from '@entities/elements';
 import { createEffect, createEvent, createStore, sample } from 'effector';
-import { SVGProps } from 'react';
 import { OnRenderEnd, OnRenderGroupEnd } from 'react-moveable';
 
 export const moveableElementsUpdated = createEvent<elementsModel.ElementId[]>();
@@ -46,4 +45,3 @@ sample({
     ]),
   target: elementsModel.assignElementsProps,
 });
-// elementsModel.assignElementsProps.watch(console.log);

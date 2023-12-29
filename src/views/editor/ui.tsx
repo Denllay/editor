@@ -6,7 +6,6 @@ import Moveable from 'react-moveable';
 import { ColorPicker, CreateElementButton, MoveableElements, Selecto } from '@features/elements';
 import styles from './styles.module.css';
 import { Link } from '@shared/ui';
-import dynamic from 'next/dynamic';
 
 export const Editor = () => {
   const [bound, setBound] = useState<DOMRect | null>(null);
