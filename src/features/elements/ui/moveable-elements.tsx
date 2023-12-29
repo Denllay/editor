@@ -6,7 +6,10 @@ import { flushSync } from 'react-dom';
 import { moveableElementsModel } from '..';
 
 export const MoveableElements = forwardRef<Moveable>((_, ref) => {
-  const moveableElements = useUnit(moveableElementsModel.moveableElements);
+  const [moveableElements, updateElements] = useUnit([
+    moveableElementsModel.moveableElements,
+    moveableElementsModel.updateElementsUpdated,
+  ]);
 
   return (
     <Moveable
@@ -19,6 +22,8 @@ export const MoveableElements = forwardRef<Moveable>((_, ref) => {
       edgeDraggable={false}
       startDragRotate={0}
       throttleDragRotate={0}
+      onRenderEnd={updateElements}
+      onRenderGroupEnd={updateElements}
       resizable={true}
       keepRatio={false}
       throttleResize={1}

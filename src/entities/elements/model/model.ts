@@ -1,10 +1,35 @@
 import { createEvent, createStore } from 'effector';
-import { Element } from '.';
+import { Element, ElementId } from '.';
 
-export const elementCreated = createEvent<Element>();
+export const elementsUpdated = createEvent<Element[]>();
+export const assignElementsProps = createEvent<[ElementId, Element['props']][]>();
 
-export const $elements = createStore<Element[]>([
-  { type: 'rect', props: { width: '100', height: '100' }, id: 'testud' },
-]);
+const $elementsMap = createStore<Map<ElementId, Element>>(new Map());
 
-$elements.on(elementCreated, (elements, element) => [...elements, element]);
+$elementsMap.on(elementsUpdated, (elementsMap, updatedElements) => {
+  for (const updatedElement of updatedElements) {
+    elementsMap.set(updatedElement.id, updatedElement);
+  }
+
+  return new Map(elementsMap.entries());
+});
+
+$elementsMap.on(assignElementsProps, (elementsMap, elements) => {
+  for (const [id, props] of elements) {
+    const oldElement = elementsMap.get(id)!;
+
+    const updatedElement = {
+      ...oldElement,
+      props: {
+        ...oldElement?.props,
+        ...props,
+      },
+    };
+
+    elementsMap.set(id, updatedElement);
+  }
+
+  return new Map(elementsMap.entries());
+});
+
+export const $elements = $elementsMap.map<Element[]>((elementsMap) => Array.from(elementsMap.values()));

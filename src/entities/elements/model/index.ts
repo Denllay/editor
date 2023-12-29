@@ -1,2 +1,2 @@
-export { $elements, elementCreated } from './model';
-export type { Element } from './types';
+export { $elements, elementsUpdated, assignElementsProps } from './model';
+export type { Element, ElementId } from './types';
