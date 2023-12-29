@@ -1,6 +1,6 @@
 import { createEvent, createStore } from 'effector';
 import { Element, ElementId } from '.';
-
+import merge from 'deepmerge';
 export const elementsUpdated = createEvent<Element[]>();
 export const assignElementsProps = createEvent<[ElementId, Element['props']][]>();
 
@@ -15,20 +15,17 @@ $elementsMap.on(elementsUpdated, (elementsMap, updatedElements) => {
 });
 
 $elementsMap.on(assignElementsProps, (elementsMap, elements) => {
+  console.log(elements, elementsMap);
   for (const [id, props] of elements) {
     const oldElement = elementsMap.get(id)!;
 
     const updatedElement = {
       ...oldElement,
-      props: {
-        ...oldElement?.props,
-        ...props,
-      },
+      props: merge(oldElement.props, props),
     };
 
     elementsMap.set(id, updatedElement);
   }
-
   return new Map(elementsMap.entries());
 });
 

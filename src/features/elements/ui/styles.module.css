@@ -1,0 +1,19 @@
+.color_picker {
+  width: 90%;
+}
+
+.create_button {
+  cursor: pointer;
+  width: 100%;
+  border: 0;
+  background-color: #dee2e9;
+  padding: 10px;
+  border-radius: 5px;
+  font-family: 'Courier New', Courier, monospace;
+  transition: 0.5s;
+}
+
+.create_button:hover {
+  transition: 0.5s;
+  background-color: #d0d4da;
+}

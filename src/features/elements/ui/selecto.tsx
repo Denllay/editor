@@ -16,7 +16,7 @@ export const Selecto = ({ moveableRef, selectableTargets }: Props) => {
 
   return (
     <UiSelecto
-      dragContainer={window}
+      dragContainer={'.viewport'}
       selectableTargets={selectableTargets}
       hitRate={0}
       selectByClick={true}

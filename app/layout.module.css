@@ -1,4 +1,6 @@
 .body {
   height: 100vh;
   overflow: hidden;
+  padding: 25px;
+  background-color: #ebecf0;
 }

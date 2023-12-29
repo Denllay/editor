@@ -5,6 +5,7 @@ import { OnRenderEnd, OnRenderGroupEnd } from 'react-moveable';
 
 export const moveableElementsUpdated = createEvent<elementsModel.ElementId[]>();
 export const updateElementsUpdated = createEvent<OnRenderGroupEnd | OnRenderEnd>();
+export const updateElementsColor = createEvent<string>();
 
 export const moveableElements = createStore<elementsModel.ElementId[]>([]);
 
@@ -30,3 +31,19 @@ sample({
   },
   target: elementsModel.assignElementsProps,
 });
+
+sample({
+  clock: updateElementsColor,
+  source: moveableElements,
+  fn: (elementsId, color): [string, elementsModel.Element['props']][] =>
+    elementsId.map((id) => [
+      id.substring(1),
+      {
+        style: {
+          fill: color,
+        },
+      },
+    ]),
+  target: elementsModel.assignElementsProps,
+});
+// elementsModel.assignElementsProps.watch(console.log);

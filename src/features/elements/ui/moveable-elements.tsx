@@ -14,7 +14,7 @@ export const MoveableElements = forwardRef<Moveable, Props>(({ bounds }, ref) =>
     moveableElementsModel.moveableElements,
     moveableElementsModel.updateElementsUpdated,
   ]);
-  console.log(bounds);
+
   return (
     <Moveable
       ref={ref}

@@ -1,7 +1,7 @@
 .viewport {
-  height: 90vh;
-  width: 400px;
-  background: gray;
+  height: 80vh;
+  width: 100%;
+  background: #fff;
   border-radius: 5px;
 }
 
@@ -11,4 +11,19 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+
+  width: 500px;
+}
+
+.link {
+  position: absolute;
+  top: 10px;
+  left: 5px;
 }
